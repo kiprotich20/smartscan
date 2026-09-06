@@ -1,0 +1,6 @@
+{
+  "name": "SMARTSCAN - Bomet University Smart Attendance System",
+  "description": "Smart, secure, and scalable QR-based digital attendance management system for universities featuring geofencing, real-time records, and student management.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
