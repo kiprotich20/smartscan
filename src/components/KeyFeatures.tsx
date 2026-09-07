@@ -1,296 +1,327 @@
 import React, { useState } from 'react';
 import { 
   QrCode, 
-  MapPin, 
+  ShieldCheck, 
   Clock, 
   Users, 
   GraduationCap, 
+  Building2, 
+  BarChart3, 
   FileSpreadsheet, 
-  ShieldCheck, 
-  ArrowRight, 
-  Check, 
-  Layers, 
-  Sparkles,
+  Lock, 
   Smartphone,
-  Eye
+  CheckCircle2,
+  ArrowRight,
+  Sparkles,
+  Layers
 } from 'lucide-react';
 
 export const KeyFeatures: React.FC = () => {
-  const [activeFeatureIndex, setActiveFeatureIndex] = useState(0);
+  const [selectedFeatureIndex, setSelectedFeatureIndex] = useState(0);
 
   const features = [
     {
       id: 'qr-attendance',
-      title: 'QR Code-Based Attendance',
-      tagline: 'Fast and convenient attendance registration through QR scanning',
+      number: '01',
+      title: 'QR-Based Attendance',
+      summary: 'Students can scan a generated QR code to record attendance quickly.',
       icon: QrCode,
-      color: 'emerald',
-      officialSummary: 'Students use their camera or the SMARTSCAN web/mobile interface to scan a dynamic QR code projected on the lecturer’s screen or smart board. Scans register in under 3 seconds.',
-      specs: [
-        'Dynamic time-rotating QR tokens (refreshes every 15–30 seconds)',
-        'Anti-screenshot watermarking to prevent QR code sharing via WhatsApp or Telegram',
-        'Offline fallback caching with timestamp signing for intermittent connectivity',
-        'Camera viewfinder with real-time barcode alignment guide',
+      details: [
+        'Dynamic auto-rotating QR seed to block screenshots shared across messaging apps',
+        'Camera viewfinder with instant optical barcode detection (<3 seconds per scan)',
+        'Zero specialized hardware required; operates on any standard mobile browser',
+        'Visual and audible check-in verification feedback'
       ],
-      impact: 'Reduces lecture check-in time from 20 minutes to under 60 seconds for an entire class.',
+      impact: 'Reduces roll-call overhead by 90%, taking less than a minute for a full lecture cohort.',
+      badge: 'Touchless & Fast'
     },
     {
-      id: 'geofence',
-      title: 'Geofence Technology',
-      tagline: 'Ensures attendance is recorded only within approved campus locations',
-      icon: MapPin,
-      color: 'blue',
-      officialSummary: 'Binds every attendance session to specific geographical coordinates (e.g. Bomet University Main Campus, Sports Pavilion, or Science Complex) using device GPS and Wi-Fi triangulation.',
-      specs: [
-        'Configurable radial fence (e.g., 25m, 50m, 100m) around lecture halls',
-        'Real-time GPS coordinate validation against university lecture hall centroids',
-        'Detection and blocking of mock GPS location spoofing applications',
-        'Dual-layer verification combining IP subnet and device GPS precision',
+      id: 'secure-authentication',
+      number: '02',
+      title: 'Secure Authentication',
+      summary: 'Protect accounts and attendance records using secure authentication mechanisms.',
+      icon: ShieldCheck,
+      details: [
+        'Institutional Single Sign-On (SSO) integration with university credentials',
+        'Cryptographic session tokens with HMAC tamper-evident verification',
+        'Multi-factor security verification for academic staff and administrative personnel',
+        'Encrypted database storage complying with student privacy and academic data policies'
       ],
-      impact: 'Guarantees physical presence—students cannot mark attendance from hostels, cafes, or outside campus.',
+      impact: 'Prevents unauthorized access to university records and safeguards student data.',
+      badge: 'Enterprise Security'
     },
     {
-      id: 'real-time-recording',
-      title: 'Real-Time Recording',
-      tagline: 'Attendance information captured instantly for efficient monitoring',
+      id: 'real-time-tracking',
+      number: '03',
+      title: 'Real-Time Attendance Tracking',
+      summary: 'Lecturers can monitor attendance as it happens.',
       icon: Clock,
-      color: 'amber',
-      officialSummary: 'As soon as a student scans, their name, registration number, course code, and exact millisecond timestamp appear on the lecturer’s live ledger display.',
-      specs: [
-        'Sub-second live streaming ledger updates via real-time sockets',
-        'Automatic late classification based on lecturer grace period window (e.g. 10 mins)',
-        'Instant duplicate scan prevention and audible/visual confirmation buzz',
-        'Live percentage counter showing quota progress during roll call',
+      details: [
+        'Sub-second live streaming ledger updates on the lecturer’s screen as students scan',
+        'Real-time attendance progress bar measuring active headcount against registered roster',
+        'Instant late categorization based on customizable grace period timers',
+        'Immediate notification of anomalous or duplicate scanning attempts'
       ],
-      impact: 'Lecturers see live headcount against registered roster instantaneously.',
+      impact: 'Provides lecturers with immediate classroom headcount verification with zero delay.',
+      badge: 'Live Stream'
     },
     {
-      id: 'student-module',
-      title: 'Student Management Module',
-      tagline: 'Organize students by department, course, and academic year',
+      id: 'student-management',
+      number: '04',
+      title: 'Student Management',
+      summary: 'Manage student profiles, departments, courses and academic information.',
       icon: Users,
-      color: 'indigo',
-      officialSummary: 'Comprehensive academic directory tracking student profiles across schools (School of Science, Agribusiness, Computing, Education) with historical attendance logs.',
-      specs: [
-        'Directory organized by Department, Academic Year, and Program of Study',
-        'Individual student attendance scorecards with percentage compliance indicators',
-        'Automated threshold flags for students falling below the 75% exam sitting rule',
-        'Self-service student portal to monitor personal attendance records',
+      details: [
+        'Comprehensive directory organized by School, Department, Degree Program, and Year',
+        'Student profile dashboards tracking cumulative attendance percentage per unit',
+        'Automated warning triggers for students at risk of falling below attendance thresholds',
+        'Self-service student portal for checking personal attendance compliance'
       ],
-      impact: 'Eliminates disputes over missed classes prior to semester examinations.',
+      impact: 'Eliminates disputes over class attendance prior to semester examinations.',
+      badge: 'Student Directory'
     },
     {
-      id: 'lecturer-module',
-      title: 'Lecturer Management Module',
-      tagline: 'Lecturers can create and manage attendance sessions easily',
+      id: 'lecturer-dashboard',
+      number: '05',
+      title: 'Lecturer Dashboard',
+      summary: 'Provide lecturers with an easy-to-use interface for managing classes and attendance.',
       icon: GraduationCap,
-      color: 'purple',
-      officialSummary: 'Equips academic staff with intuitive session creation controls, timetable integration, attendance roster management, and manual override capabilities.',
-      specs: [
-        'One-click session launch for scheduled units (e.g., CSC 101, BCT 202)',
-        'Session timer with automated closure when lecture commences',
-        'Manual override toggle for excused medical absences or special approvals',
-        'Direct notification broadcast to enrolled students regarding session start',
+      details: [
+        'One-click session launch for scheduled timetable units (e.g. CSC 101, BCT 202)',
+        'Interactive session controls: Start, Pause, Grace Period, and Session Close',
+        'Manual override toggle for verified medical absences or university assignments',
+        'Instant CSV and PDF class roster export formatted for university department submissions'
       ],
-      impact: 'Saves lecturers an average of 45 hours of administrative overhead per academic year.',
+      impact: 'Saves lecturers an estimated 45 hours of tedious administration each academic year.',
+      badge: 'Lecturer Portal'
+    },
+    {
+      id: 'admin-dashboard',
+      number: '06',
+      title: 'Admin Dashboard',
+      summary: 'Administrators can manage users, departments, courses and system activities.',
+      icon: Building2,
+      details: [
+        'Centralized oversight across all faculties, lecture halls, and academic departments',
+        'Course allocation, lecturer assignment, and academic calendar configuration',
+        'Campus-wide activity audit logs and security monitoring telemetry',
+        'Bulk user import/export supporting University Enterprise Resource Planning (ERP) sync'
+      ],
+      impact: 'Gives Deans and Registrars comprehensive institutional visibility in a single click.',
+      badge: 'Campus Control'
+    },
+    {
+      id: 'attendance-analytics',
+      number: '07',
+      title: 'Attendance Analytics',
+      summary: 'Generate meaningful attendance statistics and insights.',
+      icon: BarChart3,
+      details: [
+        'Longitudinal attendance trend graphs across semesters and academic cohorts',
+        'Department-level comparison charts highlighting participation rates',
+        'Predictive risk modeling to detect student dropout patterns early',
+        'High-density visual charts formatted for Academic Board presentations'
+      ],
+      impact: 'Empowers university leadership to make evidence-based policy and curriculum decisions.',
+      badge: 'Data Intelligence'
     },
     {
       id: 'digital-records',
-      title: 'Digital Records & Reports',
-      tagline: 'Reduce paperwork and simplify attendance tracking and reporting',
+      number: '08',
+      title: 'Digital Attendance Records',
+      summary: 'Replace manual paperwork with centralized digital records.',
       icon: FileSpreadsheet,
-      color: 'emerald',
-      officialSummary: 'Converts attendance paper clutter into audit-ready institutional reports. Generates instant PDF and Excel exports for Deans, HoDs, and Registrar Academic Affairs.',
-      specs: [
-        'Export formats: PDF official university seal transcripts and Excel/CSV sheets',
-        'Department-wide comparison reports on student engagement and course participation',
-        'Automated semester audit trails archived securely for academic accreditation',
-        'Integration with University ERP (Enterprise Resource Planning) systems',
+      details: [
+        'Permanent cloud-backed attendance archives accessible anytime, anywhere',
+        'Tamper-proof digital ledger eliminating lost physical attendance sheets',
+        'One-click official PDF transcript generation with institutional watermarking',
+        'Full compliance with university accreditation and academic quality assurance criteria'
       ],
-      impact: 'Eliminates 100% of attendance paperwork, saving reams of paper and administrative filing space.',
+      impact: 'Replaces 100% of attendance paperwork, saving university reams of paper and storage costs.',
+      badge: 'Paperless System'
     },
     {
-      id: 'secure-access',
-      title: 'Secure Access & Integrity',
-      tagline: 'Controlled access with authentication and session security',
-      icon: ShieldCheck,
-      color: 'rose',
-      officialSummary: 'Multi-tiered institutional security protecting student privacy while enforcing single-device binding so one student cannot scan for another.',
-      specs: [
-        'Single active device binding (Hardware fingerprinting blocks credential sharing)',
-        'Role-Based Access Control (RBAC) for Students, Lecturers, HoDs, and Admins',
-        'Encrypted JWT session tokens with tamper-evident HMAC signatures',
-        'Zero storage of intrusive biometric data; privacy-compliant architecture',
+      id: 'anti-fraud-controls',
+      number: '09',
+      title: 'Anti-Fraud Controls',
+      summary: 'Include mechanisms designed to reduce attendance manipulation and proxy attendance.',
+      icon: Lock,
+      details: [
+        'Hardware-level single device binding preventing students from logging into absent peers’ phones',
+        'GPS geofence radius restriction ensuring scans only succeed within approved venues',
+        'Time-expiring cryptographic tokens preventing remote QR sharing via screenshots',
+        'Intelligent duplicate detection instantly flagging simultaneous scan attempts'
       ],
-      impact: 'Completely eliminates proxy attendance and buddy punching with zero tolerance for fraud.',
+      impact: 'Restores complete trust in university attendance registers with zero proxy signing.',
+      badge: 'Fraud Prevention'
+    },
+    {
+      id: 'responsive-platform',
+      number: '10',
+      title: 'Responsive Platform',
+      summary: 'Ensure SMARTSCAN works effectively across phones, tablets and computers.',
+      icon: Smartphone,
+      details: [
+        'Progressive web architecture optimized for Android smartphones, iPhones, and tablets',
+        'Adaptive desktop layouts tailored for lecture hall projectors and PC workstations',
+        'Lightweight data footprint designed to run smoothly on low-bandwidth 3G/4G campus Wi-Fi',
+        'Accessible, high-contrast user interface meeting modern accessibility guidelines'
+      ],
+      impact: 'Enables every student and lecturer to participate seamlessly regardless of device type.',
+      badge: 'Cross-Device'
     },
   ];
 
-  const currentFeature = features[activeFeatureIndex];
+  const currentFeature = features[selectedFeatureIndex];
+  const CurrentIcon = currentFeature.icon;
 
   return (
     <section id="key-features" className="py-20 bg-slate-50 border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Title */}
+        {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold tracking-wider uppercase mb-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold tracking-wider uppercase mb-3 border border-emerald-200">
             <Sparkles className="w-3.5 h-3.5 text-emerald-700" />
-            <span>Complete Feature Suite</span>
+            <span>Platform Capabilities</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-            The 7 Key Features of SMARTSCAN
+            Key Features of SMARTSCAN
           </h2>
-          <p className="mt-3 text-base sm:text-lg text-slate-600">
-            Engineered specifically for university environments to ensure fast, cheat-proof, and environmentally sustainable attendance management.
+          <p className="mt-3 text-base sm:text-lg text-slate-600 leading-relaxed">
+            Ten core capabilities built specifically to transform attendance management from a tedious manual chore into a seamless, intelligent digital operation.
           </p>
         </div>
 
-        {/* Feature Grid Overview (7 Cards matching poster bullets) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {features.map((feature, idx) => {
-            const Icon = feature.icon;
-            const isSelected = activeFeatureIndex === idx;
+        {/* 10 Feature Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 mb-12">
+          {features.map((feat, idx) => {
+            const Icon = feat.icon;
+            const isSelected = selectedFeatureIndex === idx;
 
             return (
               <div
-                key={feature.id}
-                onClick={() => setActiveFeatureIndex(idx)}
-                className={`group rounded-2xl p-6 transition-all cursor-pointer border relative overflow-hidden flex flex-col justify-between ${
+                key={feat.id}
+                onClick={() => setSelectedFeatureIndex(idx)}
+                className={`rounded-2xl p-5 transition-all cursor-pointer border flex flex-col justify-between ${
                   isSelected
-                    ? 'bg-white border-emerald-600 shadow-md ring-2 ring-emerald-500/20'
-                    : 'bg-white hover:bg-slate-50/80 border-slate-200 hover:border-slate-300 shadow-xs'
+                    ? 'bg-white border-emerald-700 shadow-md ring-2 ring-emerald-600/20'
+                    : 'bg-white hover:bg-slate-50/90 border-slate-200 shadow-xs hover:border-slate-300'
                 }`}
               >
                 <div>
-                  <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center justify-between mb-3">
                     <div
-                      className={`w-12 h-12 rounded-xl flex items-center justify-center transition-colors ${
+                      className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
                         isSelected
-                          ? 'bg-emerald-700 text-white shadow-sm'
-                          : 'bg-emerald-50 text-emerald-700 group-hover:bg-emerald-100'
+                          ? 'bg-emerald-700 text-white shadow-xs'
+                          : 'bg-emerald-50 text-emerald-800 group-hover:bg-emerald-100'
                       }`}
                     >
-                      <Icon className="w-6 h-6" />
+                      <Icon className="w-5 h-5" />
                     </div>
-                    <span className="text-xs font-mono font-bold text-slate-400 bg-slate-100 px-2 py-0.5 rounded-full">
-                      0{idx + 1}
+                    <span className="text-xs font-mono font-bold text-slate-400">
+                      {feat.number}
                     </span>
                   </div>
 
-                  <h3 className="text-lg font-bold text-slate-900 leading-snug group-hover:text-emerald-700 transition-colors">
-                    {feature.title}
+                  <h3 className="text-sm font-bold text-slate-900 leading-snug">
+                    {feat.title}
                   </h3>
 
-                  <p className="text-xs font-semibold text-emerald-700 mt-1">
-                    {feature.tagline}
-                  </p>
-
-                  <p className="text-xs text-slate-600 mt-2.5 leading-relaxed line-clamp-3">
-                    {feature.officialSummary}
+                  <p className="text-xs text-slate-600 mt-2 leading-relaxed line-clamp-3">
+                    {feat.summary}
                   </p>
                 </div>
 
-                <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-emerald-700">
-                  <span>{isSelected ? 'Currently Inspecting' : 'Click to Inspect'}</span>
-                  <ArrowRight className={`w-4 h-4 transition-transform ${isSelected ? 'translate-x-1' : 'group-hover:translate-x-0.5'}`} />
+                <div className="mt-4 pt-2.5 border-t border-slate-100 flex items-center justify-between text-[11px] font-bold text-emerald-800">
+                  <span>{isSelected ? 'Selected' : 'Inspect'}</span>
+                  <ArrowRight className={`w-3.5 h-3.5 transition-transform ${isSelected ? 'translate-x-1 text-emerald-700' : 'text-slate-400'}`} />
                 </div>
               </div>
             );
           })}
-
-          {/* Institutional Integration card filling the 8th slot */}
-          <div className="rounded-2xl p-6 bg-gradient-to-br from-emerald-800 to-green-950 text-white flex flex-col justify-between shadow-md">
-            <div>
-              <div className="w-12 h-12 rounded-xl bg-emerald-700/80 flex items-center justify-center text-amber-300 mb-4 border border-emerald-600">
-                <Layers className="w-6 h-6" />
-              </div>
-              <span className="text-[11px] font-mono font-bold tracking-wider text-emerald-300 uppercase block mb-1">
-                INSTITUTIONAL DEPLOYMENT
-              </span>
-              <h3 className="text-lg font-bold text-white leading-snug">
-                Bomet University Standards
-              </h3>
-              <p className="text-xs text-emerald-100 mt-2 leading-relaxed">
-                Fully tuned for high-density lecture theaters, laboratory cohorts, and outdoor pavilion events with zero downtime.
-              </p>
-            </div>
-            <div className="mt-4 pt-3 border-t border-emerald-700/60 text-xs font-semibold text-amber-300">
-              SMART • SECURE • SCALABLE
-            </div>
-          </div>
         </div>
 
-        {/* Interactive Feature Deep Dive Panel */}
-        <div className="bg-white rounded-3xl p-6 sm:p-10 border border-emerald-200 shadow-sm">
+        {/* Interactive Deep-Dive Spotlight Card */}
+        <div className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200 shadow-sm">
           <div className="flex flex-col lg:flex-row gap-8 items-start">
-            {/* Left Col: Feature Spotlight */}
-            <div className="lg:w-1/2">
+            {/* Left: Specification Details */}
+            <div className="lg:w-7/12">
               <div className="flex items-center gap-2 text-xs font-mono font-bold text-emerald-800 uppercase mb-2">
-                <span>Feature Spotlight #0{activeFeatureIndex + 1}</span>
+                <span>Feature Spotlight • {currentFeature.number} of 10</span>
+                <span className="text-slate-300">|</span>
+                <span className="bg-emerald-100 px-2 py-0.5 rounded text-emerald-900 font-sans">
+                  {currentFeature.badge}
+                </span>
               </div>
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-                {currentFeature.title}
-              </h3>
-              <p className="text-sm font-semibold text-emerald-700 mt-1">
-                {currentFeature.tagline}
-              </p>
-              <p className="text-sm text-slate-700 mt-4 leading-relaxed">
-                {currentFeature.officialSummary}
+
+              <div className="flex items-center gap-3 mt-1">
+                <div className="w-12 h-12 rounded-2xl bg-emerald-700 text-white flex items-center justify-center shadow-sm">
+                  <CurrentIcon className="w-6 h-6" />
+                </div>
+                <div>
+                  <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                    {currentFeature.title}
+                  </h3>
+                </div>
+              </div>
+
+              <p className="text-sm font-semibold text-slate-700 mt-3 leading-relaxed">
+                {currentFeature.summary}
               </p>
 
               {/* Technical Specifications */}
               <div className="mt-6">
                 <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider mb-3">
-                  Technical Architecture & Specifications:
+                  System Architecture & Capabilities:
                 </h4>
                 <div className="space-y-2.5">
-                  {currentFeature.specs.map((spec, sIdx) => (
-                    <div key={sIdx} className="flex items-start gap-2.5 text-xs text-slate-700">
-                      <div className="w-4 h-4 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
-                        <Check className="w-2.5 h-2.5" />
+                  {currentFeature.details.map((detail, dIdx) => (
+                    <div key={dIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700">
+                      <div className="w-4 h-4 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0 mt-0.5">
+                        <CheckCircle2 className="w-3 h-3 text-emerald-700" />
                       </div>
-                      <span>{spec}</span>
+                      <span>{detail}</span>
                     </div>
                   ))}
                 </div>
               </div>
             </div>
 
-            {/* Right Col: Practical Impact Showcase */}
-            <div className="lg:w-1/2 w-full">
-              <div className="bg-slate-900 rounded-2xl p-6 sm:p-8 text-white relative overflow-hidden">
+            {/* Right: Operational Impact & Enterprise Metric */}
+            <div className="lg:w-5/12 w-full">
+              <div className="bg-slate-900 rounded-2xl p-6 sm:p-7 text-white relative overflow-hidden border border-slate-800">
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-xs font-mono text-emerald-400 font-bold uppercase tracking-wider">
+                  <span className="text-[11px] font-mono text-emerald-400 font-bold uppercase tracking-wider">
                     OPERATIONAL OUTCOME
                   </span>
-                  <span className="text-xs bg-emerald-950 text-emerald-300 border border-emerald-800 px-2.5 py-0.5 rounded-full font-bold">
-                    Tested at Bomet University
+                  <span className="text-[11px] bg-emerald-950 text-emerald-300 border border-emerald-800 px-2.5 py-0.5 rounded-full font-bold">
+                    Campus-Ready
                   </span>
                 </div>
 
-                <div className="text-xl font-bold text-white mb-4 leading-snug">
+                <div className="text-lg font-bold text-white mb-4 leading-snug">
                   "{currentFeature.impact}"
                 </div>
 
                 <div className="p-4 rounded-xl bg-slate-800/80 border border-slate-700 text-xs text-slate-300 space-y-2">
                   <div className="flex items-center justify-between font-mono text-[11px]">
-                    <span className="text-slate-400">Security Rating:</span>
-                    <span className="text-emerald-400 font-bold">Bank-Grade / Anti-Tamper</span>
+                    <span className="text-slate-400">Implementation:</span>
+                    <span className="text-emerald-400 font-bold">Core Production Module</span>
                   </div>
                   <div className="flex items-center justify-between font-mono text-[11px]">
-                    <span className="text-slate-400">Device Compatibility:</span>
-                    <span className="text-emerald-400 font-bold">Android, iOS, Windows, Mac</span>
+                    <span className="text-slate-400">Data Integrity:</span>
+                    <span className="text-emerald-400 font-bold">Audit-Certified</span>
                   </div>
                   <div className="flex items-center justify-between font-mono text-[11px]">
-                    <span className="text-slate-400">Deployment Status:</span>
-                    <span className="text-emerald-400 font-bold">Ready for Institutional Rollout</span>
+                    <span className="text-slate-400">Scalability Scope:</span>
+                    <span className="text-emerald-400 font-bold">University-Wide Deployment</span>
                   </div>
                 </div>
 
-                <div className="mt-4 flex items-center justify-end">
-                  <span className="text-[11px] font-mono text-slate-400">
-                    Module ID: BU-SMS-{currentFeature.id.toUpperCase()}
-                  </span>
+                <div className="mt-4 flex items-center justify-between text-[11px] font-mono text-slate-400">
+                  <span>SMARTSCAN PLATFORM</span>
+                  <span className="text-emerald-400">BU-FEAT-{currentFeature.number}</span>
                 </div>
               </div>
             </div>
